@@ -31,7 +31,7 @@ class HashCode2019Solver:
             return self.id == other.id
 
 
-    def __init__(self, input_file, output_file, _subset_size = 10000 ):
+    def __init__(self, input_file, output_file, _subset_size = 1000 ):
         self.input = input_file
         self.output = output_file
 
@@ -178,7 +178,8 @@ class HashCode2019Solver:
         Visited = set()
         Slideshow = []
 
-        current_id = next(iter(SlideSet))
+        current_id = max (SlideSet, key=lambda slide: self.Slides[slide].size)
+        # current_id = next(iter(SlideSet))
         Slideshow.append(self.Slides[current_id])
 
         while len(SlideSet) != 0:
@@ -240,7 +241,8 @@ class HashCode2019Solver:
         SlideshowsSet = set(list(Slideshows))
         Visited = set()
 
-        current_show_id = next(iter(SlideshowsSet))
+        current_show_id = max (SlideshowsSet, key=lambda show: Slideshows[show][-1].size)
+        # current_show_id = next(iter(SlideshowsSet))
         fullShow += Slideshows[current_show_id]
 
         while len(SlideshowsSet) != 0:
